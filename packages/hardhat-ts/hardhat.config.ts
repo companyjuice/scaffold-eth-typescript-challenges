@@ -35,10 +35,16 @@ declare module 'hardhat/types/runtime' {
 }
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
+
+const DEBUG = true;
+const MINT_TO_ADDRESS = '0xE987D57A1466E1Cb19CE9AbC3A01457890409b75';
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = 'localhost';
+//const defaultNetwork = 'localhost';
+const defaultNetwork = 'rinkeby';
+//const defaultNetwork = 'ropsten';
+//const defaultNetwork = 'mainnet';
 
 const getMnemonic = () => {
   try {
@@ -46,7 +52,7 @@ const getMnemonic = () => {
   } catch (e) {
     // @ts-ignore
     if (defaultNetwork !== 'localhost') {
-      console.log('☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn run generate` and then `yarn run account`.');
+      console.log('☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn generate` and then `yarn account`.');
     }
   }
   return '';
@@ -76,31 +82,31 @@ const config: HardhatUserConfig = {
       // },
     },
     rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     kovan: {
-      url: 'https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://kovan.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     mainnet: {
-      url: 'https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://mainnet.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     ropsten: {
-      url: 'https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://ropsten.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     goerli: {
-      url: 'https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://goerli.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: getMnemonic(),
       },
@@ -162,8 +168,6 @@ const config: HardhatUserConfig = {
 };
 export default config;
 
-const DEBUG = false;
-
 function debug(text: string) {
   if (DEBUG) {
     console.log(text);
@@ -180,7 +184,7 @@ task('mint', 'Mints NFTs to the specified address', async (_, hre) => {
   const { getNamedAccounts } = hre;
 
   // ADDRESS TO MINT TO:
-  const toAddress = '0xE987D57A1466E1Cb19CE9AbC3A01457890409b75';
+  const toAddress = MINT_TO_ADDRESS;
 
   // // // // // // // // // // // // // // // // // //
 

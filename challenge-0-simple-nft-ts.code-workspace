@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"solidity.packageDefaultDependenciesDirectory": "packages/hardhat-ts/node_modules",
+		"solidity.formatter": "prettier",
+		"solidity.defaultCompiler": "localNodeModule"
+	}
+}

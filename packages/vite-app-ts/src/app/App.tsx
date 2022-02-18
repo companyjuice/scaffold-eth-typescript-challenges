@@ -12,7 +12,7 @@ import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-compon
  */
 const MainPage = lazy(() => import('./routes/main/Main'));
 
-console.log('load app');
+console.log('load MM vite app');
 
 // import postcss style file
 import '~~/styles/css/tailwind-base.pcss';
@@ -49,7 +49,7 @@ const context: IEthComponentsSettings = {
  * @returns
  */
 const App: FC = () => {
-  console.log('loading app...');
+  console.log('loading MM vite app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ApolloProvider client={client}>
