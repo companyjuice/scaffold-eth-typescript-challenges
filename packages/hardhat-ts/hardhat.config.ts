@@ -38,6 +38,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 
 const DEBUG = true;
 const MINT_TO_ADDRESS = '0xE987D57A1466E1Cb19CE9AbC3A01457890409b75';
+const INFURA_ID = '432d743bb1d944268c6e3725f243a7e0';
 //
 // Select the network you want to deploy to here:
 //
