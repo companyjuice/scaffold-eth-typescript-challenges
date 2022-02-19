@@ -35,7 +35,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const faucetTx = transactor(settingsContext, signer, undefined, undefined, true);
 
   /**
-   * facuet is only available on localhost
+   * faucet is only available on localhost
    */
   const faucetAvailable = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 500, {
     trailing: true,
@@ -45,7 +45,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const faucetHint = useMemo(() => {
     const min = parseFloat(utils.formatUnits(yourLocalBalance.toBigInt(), 'ether'));
 
-    if (!faucetClicked && faucetAvailable && yourLocalBalance && min < 0.002 && ethersContext?.account != null) {
+    if (!faucetClicked && faucetAvailable && yourLocalBalance && min <= 1.01 && ethersContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
@@ -54,7 +54,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
               if (faucetTx && ethersContext?.account != null) {
                 faucetTx({
                   to: ethersContext?.account,
-                  value: parseEther('0.01').toHexString(),
+                  value: parseEther('0.5').toHexString(),
                 })
                   .then(() => setFaucetClicked(true))
                   .catch(() => setFaucetClicked(false));
