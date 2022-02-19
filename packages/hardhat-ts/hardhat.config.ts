@@ -201,7 +201,7 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
       /* do nothing - this file isn't always there */
     }
 
-    const amount = taskArgs.amount ? taskArgs.amount : '0.5';
+    const amount = taskArgs.amount ? taskArgs.amount : '0.01';
     const tx = {
       to: randomWallet.address,
       value: ethers.utils.parseEther(amount),
